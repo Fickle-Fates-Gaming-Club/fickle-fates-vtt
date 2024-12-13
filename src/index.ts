@@ -22,8 +22,7 @@ const server = Bun.serve({
 
     if (path === "/api") return Response.json({ some: "buns", for: "you" });
 
-    const body = figlet.textSync("Test");
-    return new Response(body);
+    return new Response(figlet.textSync("4 0 4 Page Not Found"), { status: 404 });
   },
 });
 
