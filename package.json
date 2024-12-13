@@ -8,12 +8,15 @@
   },
   "devDependencies": {
     "@types/bun": "^1.1.14",
-    "@types/figlet": "^1.7.0"
+    "@types/figlet": "^1.7.0",
+    "@types/react-dom": "^19.0.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "figlet": "^1.8.0"
+    "figlet": "^1.8.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
