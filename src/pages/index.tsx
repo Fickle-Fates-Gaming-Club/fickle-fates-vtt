@@ -1,7 +1,9 @@
-import { renderToReadableStream } from "react-dom/server";
-import HomePage from "./home";
-import AuthPage from "./auth";
-import FourOhFourPage from "./404";
+import { renderToReadableStream } from 'react-dom/server';
+import HomePage from './home';
+import AuthPage from './auth';
+import RegisterPage from './register';
+import FourOhFourPage from './404';
+import ResetPage from './reset';
 
 const getProps = (testMsg:string) => ({
   message: testMsg
@@ -16,9 +18,21 @@ const pageRoutes = async (req:Request) => {
       { headers: { "Content-Type": "text/html" },
     });
   } else if (route === '/auth') {
-    const props = getProps('Auth Page Message');
+    const props = getProps('Login Page Message');
     return new Response(
       await renderToReadableStream(<AuthPage {...props} />), 
+      { headers: { "Content-Type": "text/html" },
+    });
+  } else if (route === '/auth/register') {
+    const props = getProps('Signup Page Message');
+    return new Response(
+      await renderToReadableStream(<RegisterPage {...props} />), 
+      { headers: { "Content-Type": "text/html" },
+    });
+  } else if (route === '/auth/reset') {
+    const props = getProps('PW Reset Page Message');
+    return new Response(
+      await renderToReadableStream(<ResetPage {...props} />), 
       { headers: { "Content-Type": "text/html" },
     });
   } else {
