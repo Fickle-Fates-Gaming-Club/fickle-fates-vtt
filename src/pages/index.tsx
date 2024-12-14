@@ -3,17 +3,30 @@ import HomePage from "./home";
 import AuthPage from "./auth";
 import FourOhFourPage from "./404";
 
-const routes = (route:string, props:any) => {
+const getProps = (testMsg:string) => ({
+  message: testMsg
+});
+
+const pageRoutes = async (req:Request) => {
+  const route = new URL(req.url).pathname;
   if (route === '/') {
-    return <HomePage {...props} />;
+    const props = getProps('Home Page Message');
+    return new Response(
+      await renderToReadableStream(<HomePage {...props} />), 
+      { headers: { "Content-Type": "text/html" },
+    });
   } else if (route === '/auth') {
-    return <AuthPage {...props} />;
+    const props = getProps('Auth Page Message');
+    return new Response(
+      await renderToReadableStream(<AuthPage {...props} />), 
+      { headers: { "Content-Type": "text/html" },
+    });
   } else {
-    return <FourOhFourPage {...props} />;
+    return new Response(
+      await renderToReadableStream(<FourOhFourPage />), 
+      { headers: { "Content-Type": "text/html" },
+    });
   }
 };
 
-export const renderRoute = async (route:any, props:any) => await renderToReadableStream(
-  routes(route, props)
-);
-
+export default pageRoutes;
