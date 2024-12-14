@@ -6,10 +6,16 @@ To install dependencies:
 bun install
 ```
 
-To run:
-
+Run dev environment w/ livereload:
 ```bash
-bun run src/index.ts
+bun run dev
 ```
 
-This project was created using `bun init` in bun v1.1.38. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Run regularly:
+```base
+bun run start
+```
+
+
+This project was created using `bun init` in bun v1.1.38. 
+[Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
