@@ -1,15 +1,22 @@
-import figlet from "figlet";
+import figlet from 'figlet';
+import pageRoutes from './pages';
+import apiRoutes from './api';
 
 const server = Bun.serve({
   port: 1337,
-  fetch(req) {
-    const body = figlet.textSync("Test");
-    return new Response(body);
+  async fetch(req) {
+    const path = new URL(req.url).pathname;
+
+    if (path === '/api/') {
+      return apiRoutes(req)
+    } else {
+      return pageRoutes(req);
+    }
   },
 });
 
 console.log(figlet.textSync('FICKLEFATES'));
-console.log(`‧₊☽◯☾₊‧⁺⋆˖ Fates be spun ☽✡︎☾ http://localhost:${server.port} ⋆˖⁺‧₊☽◯☾₊‧`);
+console.log(`‧₊☽◯☾₊‧⁺⋆˖ Fates be spun upon http://localhost:${server.port} ⋆˖⁺‧₊☽◯☾₊‧`);
 console.log(``);
 console.log(`
     /)/)       
